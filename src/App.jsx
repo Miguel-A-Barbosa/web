@@ -1,13 +1,16 @@
-function App() {
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
 
+function App() {
   return (
-    <>
-      <div className="relative mt-auto prose">
-        <h1 className='text-4xl text-red-500'>HOLA MUNDO</h1>
-        <p className="mt-3 leading-relaxed text-zinc-900">A la vívora vívora de la mar por aquí todos pueden pasar</p>
-      </div>
-    </>
-  )
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/dashboard" element={<Dashboard />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
