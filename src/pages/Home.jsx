@@ -6,12 +6,10 @@ export default function Home() {
     <>
       <Header />
 
-      {/* WRAPPER DEL FONDO + CONTENIDO */}
       <div
         className="relative w-full lg:w-[98%] mx-auto z-0"
         style={{ minHeight: "calc(100vh - 130px)" }}
       >
-        {/* FONDO RESPONSIVE QUE CRECE CON EL CONTENIDO */}
         <div
           className="absolute inset-0 -z-10"
           style={{
@@ -22,14 +20,14 @@ export default function Home() {
           }}
         />
 
-        {/* HERO SECCION */}
         <main className="relative overflow-hidden">
-          <section className="container mx-auto px-6 py-20">
+          <section className="container mx-auto px-4 lg:px-14 py-12 lg:py-20">
             <div className="flex flex-col lg:flex-row items-center gap-10">
-              {/* TEXTO IZQUIERDA */}
-              <div className="lg:w-1/2">
+
+              {/* TEXTO */}
+              <div className="w-full lg:basis-[55%] pl-0 lg:pl-12 text-center lg:text-left">
                 <h1
-                  className="text-5xl lg:text-6xl font-extrabold leading-tight"
+                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight"
                   style={{
                     color: "#0B2545",
                     textShadow: "2px 3px 3px #4DB6AC",
@@ -38,15 +36,13 @@ export default function Home() {
                   Toma Mejores Decisiones Con Datos, No Con Supocisiones
                 </h1>
 
-                <p className="mt-6 text-lg max-w-xl font-medium text-[#0B2545]">
-                  En pa'lantED convertimos tus datos en información clara y
-                  accionable para mejorar resultados, reducir riesgos y aumentar
-                  tu competitividad.
+                <p className="my-10 md:my-14 text-base md:text-lg max-w-xl mx-auto lg:mx-0 font-medium text-[#0B2545]">
+                  En pa'lantED convertimos tus datos en información clara y accionable para mejorar resultados, reducir riestos y aumentar tu competitividad.
                 </p>
 
-                <div className="mt-8 flex items-center gap-4">
+                <div className="mt-6 md:mt-8 flex justify-center lg:justify-start">
                   <button
-                    className="px-6 py-3 rounded-full font-medium shadow"
+                    className="px-6 py-4 md:px-8 md:py-5 rounded-full font-bold shadow text-lg md:text-2xl"
                     style={{ backgroundColor: "#FFC857", color: "#0B2545" }}
                   >
                     ¡Escríbenos por WhatsApp!
@@ -54,12 +50,12 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* IMAGEN DERECHA */}
-              <div className="lg:w-1/2 flex justify-center lg:justify-end">
+              {/* IMAGEN */}
+              <div className="w-full lg:basis-[45%] flex justify-center lg:pl-10">
                 <img
                   src={heroImg}
                   alt="Hero"
-                  className="w-[360px] lg:w-[420px] rounded-2xl shadow-2xl object-cover"
+                  className="w-[270px] md:w-[330px] lg:w-[420px] rounded-2xl shadow-2xl object-cover"
                 />
               </div>
             </div>
