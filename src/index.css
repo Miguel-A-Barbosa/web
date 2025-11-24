@@ -1,13 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
 
 @import "tailwindcss";
 
 @theme {
-    --font-sansation: 'Sansation', sans-serif;
+  --font-inter: "Inter", sans-serif;
+  --font-sansation: "Sansation", sans-serif;
+}
+
+h1 {
+  @apply font-inter;
 }
 
 body {
   @apply font-sansation;
+}
+
+.glass-card {
+  backdrop-filter: blur(2px);
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeInUp-header {
+  animation: fadeInUp 0.3s ease-out;
+}
+
+.animate-fadeInUp-hero {
+  animation: fadeInUp 0.5s ease-out;
 }
 
 @keyframes spin {
