@@ -4,7 +4,6 @@ function Login() {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    // Aquí podrías validar usuario real
     navigate("/dashboard");
   };
 
