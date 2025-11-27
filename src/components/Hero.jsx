@@ -1,19 +1,46 @@
+import { useState, useEffect } from "react";
 import heroImg from "../assets/front_image.png";
-import { FaWhatsapp } from 'react-icons/fa';
+import { FaWhatsapp } from "react-icons/fa";
 
 const WHATSAPP_NUMBER = "573204133997";
-const MESSAGE =
-  "¡Hola! He visitado la web de pa'lantED y me interesa saber cómo pueden ayudarme a mejorar la toma de decisiones con datos en mi institución. ¿Podríamos agendar una breve llamada para explorar las soluciones?";
-
+const MESSAGE = "¡Hola! He visitado la web de pa'lantED...";
 const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   MESSAGE
 )}`;
 
 export default function Hero() {
+  {
+    /* ARROW VISIBILITY LOGIC */
+  }
+  const [showArrow, setShowArrow] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (window.scrollY < 150) {
+        setShowArrow(true);
+      }
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 150) {
+        setShowArrow(false);
+        window.removeEventListener("scroll", handleScroll);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <div
       className="relative w-full lg:w-[98%] mx-auto z-0 animate-fadeInUp-hero"
-      style={{ minHeight: "calc(100vh - 130px)" }}
+      style={{ minHeight: "calc(100vh - 130px)", marginBottom: "40px" }}
     >
       {/* BACKGROUND GRADIENT */}
       <div
@@ -38,14 +65,12 @@ export default function Hero() {
                   textShadow: "2px 3px 3px #4DB6AC",
                 }}
               >
-                Toma Mejores Decisiones Con Datos, No Con
-                Suposiciones
+                Toma Mejores Decisiones Con Datos, No Con Suposiciones
               </h1>
               <p className="my-8 md:my-12 text-base md:text-lg max-w-xl mx-auto xl:mx-0 font-medium text-[#0B2545]">
-                En pa'lantED convertimos tus datos en
-                información clara y accionable para mejorar
-                resultados, reducir riesgos y aumentar tu
-                competitividad.
+                En pa'lantED convertimos tus datos en información clara y
+                accionable para mejorar resultados, reducir riesgos y aumentar
+                tu competitividad.
               </p>
               {/* BUTTON */}
               <div className="mt-6 md:mt-8 flex justify-center xl:justify-start">
@@ -259,6 +284,14 @@ export default function Hero() {
           </div>
         </section>
       </main>
+
+      {/* ANIMATED ARROW */}
+      {showArrow && (
+        <div className="arrow-down arrow-enter-active">
+          <div className="left"></div>
+          <div className="right"></div>
+        </div>
+      )}
     </div>
   );
 }

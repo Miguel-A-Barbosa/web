@@ -8,15 +8,12 @@ export default function Header() {
   const links = [
     { name: "Soluciones", href: "#soluciones" },
     { name: "Beneficios", href: "#beneficios" },
-    { name: "Nosotros", href: "#nosotros" }
+    { name: "Nosotros", href: "#nosotros" },
   ];
 
   return (
-    <header 
-        className="bg-white py-3 md:py-4 animate-fadeInUp-header"
-    >
+    <header className="bg-white py-3 md:py-4 animate-fadeInUp-header">
       <div className="container mx-auto px-4 sm:px-6 lg:px-10 flex items-center justify-between">
-
         {/* LOGO */}
         <div className="flex items-center gap-3">
           <img
@@ -36,9 +33,7 @@ export default function Header() {
                 </a>
 
                 {/* NAVIGATION ANIMATION */}
-                <span
-                  className="absolute left-0 -bottom-1 w-0 h-[3px] bg-[#4DB6AC] rounded-full transition-all duration-300 group-hover:w-full"
-                ></span>
+                <span className="absolute left-0 -bottom-1 w-0 h-[3px] bg-[#4DB6AC] rounded-full transition-all duration-300 group-hover:w-full"></span>
               </li>
             ))}
           </ul>
@@ -52,7 +47,6 @@ export default function Header() {
             style={{ backgroundColor: "#FFC857", color: "#0B2545" }}
           >
             Ingresar a la Plataforma
-
             {/* ARROW */}
             <svg
               className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
