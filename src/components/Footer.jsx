@@ -1,5 +1,6 @@
 import logo from "../assets/logo.png";
 import { FaWhatsapp, FaFacebookF, FaLinkedinIn } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const WHATSAPP_NUMBER = "573204133997";
 const MESSAGE =
@@ -9,9 +10,38 @@ const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
   MESSAGE
 )}`;
 
+const footerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut", staggerChildren: 0.2 },
+  },
+};
+
+const childVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const bottomFooterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.6, ease: "easeOut" },
+    },
+};
+
 export default function Footer() {
   return (
-    <footer className="relative w-full lg:w-[98%] mx-auto z-0">
+    <motion.footer
+      className="relative w-full lg:w-[98%] mx-auto z-0"
+      variants={footerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
       {/* BACKGROUND GRADIENT */}
       <div
         className="absolute inset-0 -z-10"
@@ -23,10 +53,14 @@ export default function Footer() {
         }}
       />
 
+      {/* CTA SECTION */}
       <section className="container mx-auto px-4 lg:px-14 py-10 lg:py-14">
         <div className="flex flex-col xl:flex-row items-center xl:items-center gap-5">
           {/* TEXT */}
-          <div className="w-full xl:w-[60%] text-center xl:text-left">
+          <motion.div
+            variants={childVariants}
+            className="w-full xl:w-[60%] text-center xl:text-left"
+          >
             <h2
               className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
               style={{ color: "#0B2545" }}
@@ -41,10 +75,13 @@ export default function Footer() {
               <br />
               Obtén una respuesta inmediata y una consulta sin compromiso.
             </p>
-          </div>
+          </motion.div>
 
           {/* BUTTON */}
-          <div className="w-full xl:w-[40%] flex justify-center items-center">
+          <motion.div
+            variants={childVariants}
+            className="w-full xl:w-[40%] flex justify-center items-center"
+          >
             <a
               href={whatsappLink}
               target="_blank"
@@ -59,14 +96,21 @@ export default function Footer() {
               <FaWhatsapp size={38} />
               <span>¡Escríbenos por WhatsApp!</span>
             </a>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* SEPARATOR LINE */}
       <div className="w-full h-px bg-[#0B2545]/10 mt-1"></div>
 
-      <div className="px-10 py-6">
+      {/* BOTTOM FOOTER CONTENT */}
+      <motion.div 
+        variants={bottomFooterVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.5 }} 
+        className="px-10 py-6"
+      >
         <div className="flex flex-col items-center gap-4 lg:hidden">
           <div className="flex flex-row items-center justify-center gap-10">
             <a href="https://www.facebook.com/palanted" target="_blank">
@@ -79,7 +123,7 @@ export default function Footer() {
             <img src={logo} alt="Logo" className="w-32 opacity-90" />
 
             <a
-              href="https://www.linkedin.com/in/pa-lanted-s-a-s-55a847398?miniProfileUrn=urn%3Ali%3Afs_miniProfile%3AACoAAGGoFlYB6AplReIbT_ufwX9-RieE3iiwgJ0"
+              href="https://www.linkedin.com/in/pa-lanted-s-a-s-55a847398"
               target="_blank"
             >
               <FaLinkedinIn
@@ -122,7 +166,7 @@ export default function Footer() {
             </a>
           </div>
         </div>
-      </div>
-    </footer>
+      </motion.div>
+    </motion.footer>
   );
 }

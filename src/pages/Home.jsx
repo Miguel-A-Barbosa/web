@@ -2,6 +2,7 @@ import Header from "../components/Header";
 import Hero from "../components/Hero";
 import Solutions from "../components/Solutions";
 import Benefits from "../components/Benefits";
+import AboutUs from "../components/AboutUs";
 import Footer from "../components/Footer";
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
       <Hero />
       <Solutions />
       <Benefits />
-      <Solutions />
+      <AboutUs />
       <Footer />
     </>
   );

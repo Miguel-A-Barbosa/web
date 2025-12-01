@@ -1,29 +1,30 @@
-import { TrendingUpDown, Palette, CalendarCog,  UserRoundSearch } from "lucide-react";
+import { TrendingUpDown, Palette, CalendarCog, UserRoundSearch } from "lucide-react";
+import { motion } from "framer-motion";
 
 const CUSTOM_COLORS = {
   1: {
     value: "#4DB6AC",
     bg: "bg-[#4DB6AC]",
     shadow: "shadow-[#4DB6AC]",
-    rgb: "77, 182, 172",
+    rgb: "77, 182, 172"
   },
   2: {
     value: "#1A237E",
     bg: "bg-[#1A237E]",
     shadow: "shadow-[#1A237E]",
-    rgb: "26, 35, 126",
+    rgb: "26, 35, 126"
   },
   3: {
     value: "#90CAF9",
     bg: "bg-[#90CAF9]",
     shadow: "shadow-[#90CAF9]",
-    rgb: "144, 202, 249",
+    rgb: "144, 202, 249"
   },
   4: {
     value: "#FFC857",
     bg: "bg-[#FFC857]",
     shadow: "shadow-[#FFC857]",
-    rgb: "255, 200, 87",
+    rgb: "255, 200, 87"
   },
 };
 
@@ -34,7 +35,7 @@ const solutionsData = [
     description:
       "Identifica de forma anticipada a los estudiantes con mayor probabilidad de abandonar, analizando múltiples variables académicas, comportamentales y contextuales para activar intervenciones antes de que el riesgo escale.",
     icon: TrendingUpDown,
-    ...CUSTOM_COLORS[1],
+    ...CUSTOM_COLORS[1]
   },
   {
     id: 2,
@@ -42,7 +43,7 @@ const solutionsData = [
     description:
       "Visualizaciones claras, estéticas y filtrables que resumen el estado de la permanencia, muestran tendencias clave y permiten profundizar en los datos sin complejidad técnica. Facilitan decisiones rápidas basadas en evidencia.",
     icon: Palette,
-    ...CUSTOM_COLORS[2],
+    ...CUSTOM_COLORS[2]
   },
   {
     id: 3,
@@ -50,7 +51,7 @@ const solutionsData = [
     description:
       "Reduce horas de trabajo manual con procesos de análisis y consolidación automatizados. Permite dedicar más tiempo a las acciones de permanencia en lugar de a la limpieza de datos, informes o cálculos repetitivos.",
     icon: CalendarCog,
-    ...CUSTOM_COLORS[3],
+    ...CUSTOM_COLORS[3]
   },
   {
     id: 4,
@@ -58,16 +59,44 @@ const solutionsData = [
     description:
       "Combina segmentación y análisis de motivos para revelar grupos de riesgo y sus causas más probables. Ayuda a entender quién está en riesgo y por qué, facilitando intervenciones más precisas y enfocadas.",
     icon: UserRoundSearch,
-    ...CUSTOM_COLORS[4],
-  },
+    ...CUSTOM_COLORS[4]
+  }
 ];
 
-const SolutionCard = ({ solution }) => {
+const contentVariants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  }
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: (i) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.15,
+      duration: 0.5,
+      ease: "easeOut",
+    }
+  }),
+};
+
+const SolutionCard = ({ solution, index }) => {
   const { id, title, description, bg, rgb, icon: Icon } = solution;
   const numberText = id < 10 ? `0${id}` : `${id}`;
 
   return (
-    <div
+    <motion.div
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      custom={index}
       style={{ "--color-rgb": rgb }}
       className={`
         relative p-8 bg-white rounded-xl overflow-hidden shadow-xl
@@ -104,24 +133,26 @@ const SolutionCard = ({ solution }) => {
         {title}
       </h3>
       <p className="text-sm text-gray-600 leading-6">{description}</p>
-    </div>
+    </motion.div>
   );
 };
 
 const Solutions = () => {
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section id="soluciones" className="py-20 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* TITLE AND TEXT */}
-          <div
+          <motion.div
+            variants={contentVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
             className="
-            lg:col-span-4 
-            /* Flexbox para centrar contenido verticalmente */
-            lg:flex lg:flex-col lg:justify-center 
-            /* Se asegura de que la altura de esta columna sea igual a la del contenido de la derecha */
-            lg:min-h-full
-          "
+                lg:col-span-4 
+                lg:flex lg:flex-col lg:justify-center 
+                lg:min-h-full
+             "
           >
             <div>
               <h2 className="text-5xl md:text-6xl font-extrabold text-[#0B2545] mb-4">
@@ -133,13 +164,17 @@ const Solutions = () => {
                 datos en acciones precisas y oportunas.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           {/* CARDS */}
           <div className="lg:col-span-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {solutionsData.map((solution) => (
-                <SolutionCard key={solution.id} solution={solution} />
+              {solutionsData.map((solution, index) => (
+                <SolutionCard
+                  key={solution.id}
+                  solution={solution}
+                  index={index}
+                />
               ))}
             </div>
           </div>

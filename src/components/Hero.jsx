@@ -9,9 +9,7 @@ const whatsappLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 )}`;
 
 export default function Hero() {
-  {
-    /* ARROW VISIBILITY LOGIC */
-  }
+  { /* ARROW LOGIC */ }
   const [showArrow, setShowArrow] = useState(false);
 
   useEffect(() => {
